@@ -3,10 +3,6 @@
 
 ![screenshot](example-export/001.png)
 
-## Dependencies
-
-- [axios-jsonp](https://github.com/AdonisLau/axios-jsonp)
-
 ## Installation
 
 ```console
