@@ -44,4 +44,5 @@ You can create a link by using the [Blog Card component](#BlogCard).
 ```
 
 Parameters:
-* `url` (`string`) : The date will be encoded to the QR code
+* `url` (`string`) : This URL will be converted to a BlogCard.
+
