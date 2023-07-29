@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { Vue, reactive, onMounted } from 'vue'
-import { VueJsonp, jsonp } from 'vue-jsonp'
-
-Vue.use(VueJsonp)
+import { reactive, onMounted } from 'vue'
+import axios from 'axios'
 
 interface Props {
   url: String
@@ -11,29 +9,34 @@ interface Props {
 const props = defineProps<Props>()
 
 const data = reactive({
-    title: '',
-    description: '',
-    image: '',
+  title: '',
+  description: '',
+  image: '',
 })
 
 onMounted(async () => {
-    // URLからHTMLを取得してOGPタグを抽出
+  // Retrieve HTML from URL and extract OGP tags
+  const response = await axios.get(props.url)
+  const html = response.data
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(html, 'text/html')
+  const title = doc.querySelector('meta[property="og:title"]').content
+  const description = doc.querySelector('meta[property="og:description"]').content
+  const image = doc.querySelector('meta[property="og:image"]').content
 
-    const html = await jsonp<string>( props.url)
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(html, 'text/html')
-    data.title = doc.querySelector('meta[property="og:title"]').content
-    data.description = doc.querySelector('meta[property="og:description"]').content
-    data.image = doc.querySelector('meta[property="og:image"]').content
+  console.log({ title, description, image })
+  data.title = title
+  data.description = description
+  data.image = image
 })
 </script>
 <template>
   <div>
     <div class="card">
-      <img v-if="image" :src="image" alt="画像">
+      <img v-if="data.image" :src="data.image" alt="画像">
       <div class="card-content">
-        <h2>{{ title }}</h2>
-        <p v-if="description">{{ description }}</p>
+        <h2>{{ data.title }}</h2>
+        <p v-if="data.description">{{ data.description }}</p>
         <a :href="url">{{ url }}</a>
       </div>
     </div>
@@ -68,4 +71,4 @@ onMounted(async () => {
 .card-content a {
   color: blue;
 }
-</style>C
+</style>
