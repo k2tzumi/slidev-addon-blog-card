@@ -30,6 +30,6 @@
   },
   "homepage": "https://github.com/k2tzumi/slidev-addon-blog-card#readme",
   "dependencies": {
-    "vue-jsonp": "^2.0.0"
+    "axios-jsonp": "^1.0.4"
   }
 }
