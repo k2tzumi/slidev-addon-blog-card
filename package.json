@@ -28,8 +28,5 @@
   "bugs": {
     "url": "https://github.com/k2tzumi/slidev-addon-blog-card/issues"
   },
-  "homepage": "https://github.com/k2tzumi/slidev-addon-blog-card#readme",
-  "dependencies": {
-    "axios-jsonp": "^1.0.4"
-  }
+  "homepage": "https://github.com/k2tzumi/slidev-addon-blog-card#readme"
 }
