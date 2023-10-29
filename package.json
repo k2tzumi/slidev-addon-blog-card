@@ -21,9 +21,9 @@
     "slidev"
   ],
   "devDependencies": {
-    "@slidev/cli": "^0.42.5",
+    "@slidev/cli": "^0.43.12",
     "@slidev/theme-default": "^0.21.2",
-    "playwright-chromium": "^1.36.2"
+    "playwright-chromium": "^1.39.0"
   },
   "bugs": {
     "url": "https://github.com/k2tzumi/slidev-addon-blog-card/issues"
