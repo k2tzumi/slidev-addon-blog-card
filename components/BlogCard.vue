@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { reactive, onMounted } from 'vue'
-import axios from 'axios'
 
 interface Props {
-  url: String
+  url: string
 }
 
 const props = defineProps<Props>()
@@ -18,8 +17,9 @@ const data = reactive({
 
 onMounted(async () => {
   // Retrieve HTML from URL and extract OGP tags
-  const response = await axios.get(props.url)
-  const html = response.data
+  const url = new URL(props.url);
+  const response = await fetch(url)
+  const html = await response.text()
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, 'text/html')
   const title = doc.querySelector('meta[property="og:title"]').content
